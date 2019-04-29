@@ -26,3 +26,4 @@ public class Workout {
         this.time = time;
     }
 }
+
