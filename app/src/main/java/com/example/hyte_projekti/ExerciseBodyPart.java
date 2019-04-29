@@ -1,11 +1,11 @@
 package com.example.hyte_projekti;
 
-public class Machine {
+public class ExerciseBodyPart {
     private String id;
     private String exerciseId;
-    private String name;
+    private String bodyPartId;
 
-    public Machine() {
+    public ExerciseBodyPart() {
         id = Integer.toString(hashCode());
     }
 
@@ -25,11 +25,11 @@ public class Machine {
         this.exerciseId = exerciseId;
     }
 
-    public String getName() {
-        return name;
+    public String getBodyPartId() {
+        return bodyPartId;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setBodyPartId(String bodyPartId) {
+        this.bodyPartId = bodyPartId;
     }
 }
