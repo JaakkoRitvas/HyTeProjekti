@@ -26,6 +26,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="16dp"
         android:background="@drawable/nappi"
+        android:onClick="onClick"
         android:shadowColor="#A8A8A8"
         android:shadowDx="0"
         android:shadowDy="0"
