@@ -1,8 +1,8 @@
 package com.example.hyte_projekti;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -12,9 +12,18 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+
+import com.example.hyte_projekti.database.Exercise;
+
+import java.util.ArrayList;
 
 public class ExerciseListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private ArrayList<Exercise> exercises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,8 +36,8 @@ public class ExerciseListActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(ExerciseListActivity.this, CreateExerciseActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -40,6 +49,29 @@ public class ExerciseListActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                exercises = GlobalModel.getInstance().getDatabase().exerciseDAO().getExercises();
+                ListView lv = findViewById(R.id.list);
+                lv.setAdapter(new ArrayAdapter<Exercise>(
+                        ExerciseListActivity.this,
+                        android.R.layout.simple_list_item_1,
+                        exercises
+                ));
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Exercise exercise = exercises.get(position);
+                        String subjectId = exercise.getId();
+                        Intent intent = new Intent(ExerciseListActivity.this, ViewExerciseActivity.class);
+                        intent.putExtra(GlobalModel.ID_TAG, subjectId);
+                        startActivity(intent);
+                    }
+                });
+            }
+        }).start();
     }
 
     @Override
