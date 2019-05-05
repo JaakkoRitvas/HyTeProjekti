@@ -8,6 +8,8 @@ import com.example.hyte_projekti.database.AppDatabase;
 class GlobalModel {
     private static final GlobalModel ourInstance = new GlobalModel();
     private AppDatabase database;
+    public static final String DEBUG_TAG = "MGS";
+    public static final String ID_TAG = "subject id";
 
     static GlobalModel getInstance() {
         return ourInstance;
