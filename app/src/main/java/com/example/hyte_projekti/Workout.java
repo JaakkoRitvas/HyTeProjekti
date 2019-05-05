@@ -15,9 +15,11 @@ public class Workout {
 
     @NonNull
     private Date time;
+    private boolean finished;
 
     public Workout() {
         id = Integer.toString(hashCode());
+        finished = false;
     }
 
     public String getId() {
@@ -34,6 +36,14 @@ public class Workout {
 
     public void setTime(Date time) {
         this.time = time;
+    }
+
+    public boolean isFinished() {
+        return finished;
+    }
+
+    public void setFinished(boolean finished) {
+        this.finished = finished;
     }
 }
 
