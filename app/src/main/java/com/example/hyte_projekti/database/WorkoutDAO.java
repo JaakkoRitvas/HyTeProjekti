@@ -5,7 +5,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Dao
 public interface WorkoutDAO {
@@ -20,8 +20,8 @@ public interface WorkoutDAO {
     Workout getWorkoutById(String id);
 
     @Query("SELECT * FROM Workout WHERE finished='false'")
-    ArrayList<Workout> getPlannedWorkouts();
+    List<Workout> getPlannedWorkouts();
 
     @Query("SELECT * FROM Workout WHERE finished='true'")
-    ArrayList<Workout> getFinishedWorkouts();
+    List<Workout> getFinishedWorkouts();
 }
