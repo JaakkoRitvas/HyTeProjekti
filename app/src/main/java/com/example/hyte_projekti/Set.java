@@ -1,14 +1,27 @@
 package com.example.hyte_projekti;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity
 public class Set {
+
+    @PrimaryKey
+    @NonNull
     private String id;
+
+    @ColumnInfo(name = "workout_exercise_id")
+    @NonNull
     private String workoutExerciseId;
     private int reps;
     private double weight;
 
-
     public Set() {
         id = Integer.toString(hashCode());
+        reps = 0;
+        weight = 0;
     }
 
     public String getId() {

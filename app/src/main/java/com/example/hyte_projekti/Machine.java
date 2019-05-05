@@ -1,8 +1,22 @@
 package com.example.hyte_projekti;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity
 public class Machine {
+
+    @PrimaryKey
+    @NonNull
     private String id;
+
+    @ColumnInfo(name = "exercise_id")
+    @NonNull
     private String exerciseId;
+
+    @NonNull
     private String name;
 
     public Machine() {

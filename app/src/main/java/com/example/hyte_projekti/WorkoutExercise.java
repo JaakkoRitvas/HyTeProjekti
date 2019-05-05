@@ -1,8 +1,23 @@
 package com.example.hyte_projekti;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.support.annotation.NonNull;
+
+@Entity
 public class WorkoutExercise {
+
+    @PrimaryKey
+    @NonNull
     private String id;
+
+    @ColumnInfo(name = "workout_id")
+    @NonNull
     private String workoutId;
+
+    @ColumnInfo(name = "exercise_id")
+    @NonNull
     private String exerciseId;
 
     public WorkoutExercise() {
