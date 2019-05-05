@@ -5,7 +5,7 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 @Entity
-public class Bodypart {
+public class BodyPart {
 
     @PrimaryKey
     @NonNull
@@ -14,7 +14,7 @@ public class Bodypart {
     @NonNull
     private String name;
 
-    public Bodypart() {
+    public BodyPart() {
         id = Integer.toString(hashCode());
     }
 
