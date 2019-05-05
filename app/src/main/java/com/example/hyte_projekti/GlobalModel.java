@@ -16,6 +16,10 @@ class GlobalModel {
     private GlobalModel() {
     }
 
+    public AppDatabase getDatabase() {
+        return database;
+    }
+
     public void activateDatabase(Context context) {
         database = Room.databaseBuilder(context, AppDatabase.class, "LegDayDatabase").build();
     }
