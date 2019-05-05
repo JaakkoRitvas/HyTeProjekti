@@ -14,16 +14,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import com.example.hyte_projekti.database.Exercise;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ExerciseListActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private ArrayList<Exercise> exercises;
+    private List<Exercise> exercises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
