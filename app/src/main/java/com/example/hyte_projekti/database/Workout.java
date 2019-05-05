@@ -4,8 +4,6 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
-import java.time.LocalDateTime;
-
 @Entity
 public class Workout {
 
@@ -14,7 +12,10 @@ public class Workout {
     private String id;
 
     @NonNull
-    private LocalDateTime time;
+    private String date;
+
+    @NonNull
+    private String time;
     private boolean finished;
 
     public Workout() {
@@ -22,19 +23,30 @@ public class Workout {
         finished = false;
     }
 
+    @NonNull
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 
-    public LocalDateTime getTime() {
+    @NonNull
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(@NonNull String date) {
+        this.date = date;
+    }
+
+    @NonNull
+    public String getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(@NonNull String time) {
         this.time = time;
     }
 
