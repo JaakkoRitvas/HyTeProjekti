@@ -5,7 +5,7 @@ import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 
-import java.util.List;
+import java.util.ArrayList;
 
 @Dao
 public interface MachineDAO {
@@ -17,5 +17,5 @@ public interface MachineDAO {
     void delete(Machine machine);
 
     @Query("SELECT * FROM Machine WHERE exercise_id=:exerciseId")
-    List<Machine> getMachinesByExerciseId(String exerciseId);
+    ArrayList<Machine> getMachinesByExerciseId(String exerciseId);
 }
