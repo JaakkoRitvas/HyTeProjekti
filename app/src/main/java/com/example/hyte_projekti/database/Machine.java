@@ -1,4 +1,4 @@
-package com.example.hyte_projekti;
+package com.example.hyte_projekti.database;
 
 import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Entity;
@@ -6,21 +6,20 @@ import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 @Entity
-public class WorkoutExercise {
+public class Machine {
 
     @PrimaryKey
     @NonNull
     private String id;
 
-    @ColumnInfo(name = "workout_id")
-    @NonNull
-    private String workoutId;
-
     @ColumnInfo(name = "exercise_id")
     @NonNull
     private String exerciseId;
 
-    public WorkoutExercise() {
+    @NonNull
+    private String name;
+
+    public Machine() {
         id = Integer.toString(hashCode());
     }
 
@@ -28,16 +27,8 @@ public class WorkoutExercise {
         return id;
     }
 
-    public String getWorkoutId() {
-        return workoutId;
-    }
-
     public void setId(String id) {
         this.id = id;
-    }
-
-    public void setWorkoutId(String workoutId) {
-        this.workoutId = workoutId;
     }
 
     public String getExerciseId() {
@@ -46,5 +37,13 @@ public class WorkoutExercise {
 
     public void setExerciseId(String exerciseId) {
         this.exerciseId = exerciseId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

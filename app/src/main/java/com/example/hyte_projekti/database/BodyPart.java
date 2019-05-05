@@ -1,11 +1,11 @@
-package com.example.hyte_projekti;
+package com.example.hyte_projekti.database;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
 @Entity
-public class Exercise {
+public class BodyPart {
 
     @PrimaryKey
     @NonNull
@@ -14,7 +14,7 @@ public class Exercise {
     @NonNull
     private String name;
 
-    public Exercise() {
+    public BodyPart() {
         id = Integer.toString(hashCode());
     }
 
