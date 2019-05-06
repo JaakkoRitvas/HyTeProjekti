@@ -7,7 +7,7 @@
     tools:context=".CreateExerciseActivity">
 
     <EditText
-        android:id="@+id/exerciseName"
+        android:id="@+id/inputExerciseName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -30,8 +30,8 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="@string/submit_exercise_name"
-        app:layout_constraintBaseline_toBaselineOf="@+id/exerciseName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/inputExerciseName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/exerciseName" />
+        app:layout_constraintStart_toEndOf="@+id/inputExerciseName" />
 </android.support.constraint.ConstraintLayout>

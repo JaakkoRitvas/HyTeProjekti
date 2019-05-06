@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.hyte_projekti.database.Exercise;
 
@@ -22,8 +23,10 @@ public class CreateExerciseActivity extends AppCompatActivity {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
+                        EditText input = findViewById(R.id.inputExerciseName);
+                        String exerciseName = input.getText().toString();
                         Exercise exercise = new Exercise();
-                        exercise.setName(submit.getText().toString());
+                        exercise.setName(exerciseName);
                         GlobalModel.getInstance().getDatabase().exerciseDAO().insert(exercise);
                         Intent intent = new Intent(CreateExerciseActivity.this, ExerciseListActivity.class);
                         startActivity(intent);
