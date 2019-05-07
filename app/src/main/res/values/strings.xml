@@ -17,4 +17,5 @@
     <string name="button_finish_workout">Treeni tehty</string>
     <string name="button_confirm_deletion">Kyllä</string>
     <string name="button_cancel_deletion">Ei</string>
+    <string name="lis">Lisää</string>
 </resources>

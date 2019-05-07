@@ -16,6 +16,9 @@ public class Workout {
 
     @NonNull
     private String time;
+
+    @NonNull
+    private String name;
     private boolean finished;
 
     public Workout() {
@@ -56,6 +59,15 @@ public class Workout {
 
     public void setFinished(boolean finished) {
         this.finished = finished;
+    }
+
+    @NonNull
+    public String getName() {
+        return name;
+    }
+
+    public void setName(@NonNull String name) {
+        this.name = name;
     }
 }
 
