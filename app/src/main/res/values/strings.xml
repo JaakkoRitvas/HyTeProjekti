@@ -12,5 +12,10 @@
     <string name="input_exercise_name">Nimeä liike</string>
     <string name="submit_exercise_name">OK</string>
     <string name="default_value">Oletusarvo</string>
+    <string name="null_exercise_instructions">Ei ohjetta</string>
+    <string name="button_add_exercise">Lisää liike</string>
+    <string name="button_finish_workout">Treeni tehty</string>
+    <string name="button_confirm_deletion">Kyllä</string>
+    <string name="button_cancel_deletion">Ei</string>
     <string name="lis">Lisää</string>
 </resources>
