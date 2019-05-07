@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
@@ -15,7 +16,7 @@ import com.example.hyte_projekti.database.Workout;
 import java.util.List;
 
 public class ViewWorkoutActivity extends AppCompatActivity {
-    private String id;
+    private String subjectId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,9 +24,9 @@ public class ViewWorkoutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_view_workout);
 
         final Intent intent = getIntent();
-        final String id = intent.getStringExtra(GlobalModel.ID_TAG);
-        final Workout workout = GlobalModel.getInstance().getDatabase().workoutDAO().getWorkoutById(id);
-        List<Exercise> exercises = GlobalModel.getInstance().getDatabase().workoutExerciseDAO().getExercisesByWorkoutId(id);
+        subjectId = intent.getStringExtra(GlobalModel.ID_TAG);
+        final Workout workout = GlobalModel.getInstance().getDatabase().workoutDAO().getWorkoutById(subjectId);
+        List<Exercise> exercises = GlobalModel.getInstance().getDatabase().workoutExerciseDAO().getExercisesByWorkoutId(subjectId);
 
         TextView textDate = findViewById(R.id.textDate);
         TextView textTime = findViewById(R.id.textTime);
@@ -38,15 +39,22 @@ public class ViewWorkoutActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1,
                 exercises
         ));
+        listExercises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intentDelete = new Intent(ViewWorkoutActivity.this, DeleteExerciseActivity.class);
+                intent.putExtra(GlobalModel.ID_TAG, subjectId);
+            }
+        });
 
         Button buttonAddExercise = findViewById(R.id.buttonAddExercise);
         Button buttonFinishWorkout = findViewById(R.id.buttonFinishWorkout);
         buttonAddExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent1 = new Intent(ViewWorkoutActivity.this, CreateExerciseActivity.class);
-                intent1.putExtra(GlobalModel.ID_TAG, id);
-                startActivity(intent1);
+                Intent intentCreate = new Intent(ViewWorkoutActivity.this, CreateExerciseActivity.class);
+                intentCreate.putExtra(GlobalModel.ID_TAG, subjectId);
+                startActivity(intentCreate);
             }
         });
         buttonFinishWorkout.setOnClickListener(new View.OnClickListener() {
@@ -58,8 +66,8 @@ public class ViewWorkoutActivity extends AppCompatActivity {
                         GlobalModel.getInstance().getDatabase().workoutDAO().delete(workout);
                     }
                 }).start();
-                Intent newIntent = new Intent(ViewWorkoutActivity.this, MainActivity.class);
-                startActivity(intent);
+                Intent intentMain = new Intent(ViewWorkoutActivity.this, MainActivity.class);
+                startActivity(intentMain);
             }
         });
     }
