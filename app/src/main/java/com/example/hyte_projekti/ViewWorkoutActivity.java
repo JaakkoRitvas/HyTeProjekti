@@ -27,7 +27,7 @@ public class ViewWorkoutActivity extends AppCompatActivity {
         final Intent intent = getIntent();
         subjectId = intent.getStringExtra(GlobalModel.ID_TAG);
         final Workout workout = GlobalModel.getInstance().getDatabase().workoutDAO().getWorkoutById(subjectId);
-        exercises = GlobalModel.getInstance().getDatabase().workoutExerciseDAO().getExercisesByWorkoutId(subjectId);
+        exercises = GlobalModel.getInstance().getDatabase().exerciseDAO().getExercisesByWorkoutId(subjectId);
 
         TextView textDate = findViewById(R.id.textDate);
         TextView textTime = findViewById(R.id.textTime);

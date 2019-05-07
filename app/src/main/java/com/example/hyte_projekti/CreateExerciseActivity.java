@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.hyte_projekti.database.Exercise;
-import com.example.hyte_projekti.database.WorkoutExercise;
 
 public class CreateExerciseActivity extends AppCompatActivity {
     private String id;
@@ -34,11 +33,6 @@ public class CreateExerciseActivity extends AppCompatActivity {
                         Exercise exercise = new Exercise();
                         exercise.setName(exerciseName);
                         GlobalModel.getInstance().getDatabase().exerciseDAO().insert(exercise);
-
-                        WorkoutExercise workoutExercise = new WorkoutExercise();
-                        workoutExercise.setExerciseId(exercise.getId());
-                        workoutExercise.setWorkoutId(id);
-                        GlobalModel.getInstance().getDatabase().workoutExerciseDAO().insert(workoutExercise);
 
                         input.setText("");
                     }

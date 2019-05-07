@@ -16,9 +16,9 @@ public interface ExerciseDAO {
     @Delete
     void delete(Exercise exercise);
 
-    @Query("SELECT * FROM Exercise")
-    List<Exercise> getExercises();
-
     @Query("SELECT * FROM Exercise WHERE id=:id")
     Exercise getExerciseById(String id);
+
+    @Query("SELECT * FROM Exercise WHERE workout_id=:workoutId ORDER BY name ASC")
+    List<Exercise> getExercisesByWorkoutId(String workoutId);
 }
