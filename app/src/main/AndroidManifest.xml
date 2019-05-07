@@ -32,17 +32,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ExerciseListActivity"
-            android:label="@string/title_activity_exercise_list"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".CreateExerciseActivity"
             android:parentActivityName=".ViewWorkoutActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ViewWorkoutActivity" />
         </activity>
-        <activity android:name=".ViewExerciseActivity" />
     </application>
 
 </manifest>
