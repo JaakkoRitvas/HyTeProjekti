@@ -2,12 +2,16 @@ package com.example.hyte_projekti;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TimePicker;
+
+import com.example.hyte_projekti.database.Workout;
 
 import java.util.Calendar;
 
@@ -15,8 +19,11 @@ public class TreeninLisays extends AppCompatActivity {
 
     EditText editDate;
     EditText editTime;
+    EditText editTreeni;
     Calendar currentDate;
     Calendar currentTime;
+    Button valmis;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +32,10 @@ public class TreeninLisays extends AppCompatActivity {
 
         editDate = (EditText) findViewById(R.id.txtDate);
         editTime = (EditText) findViewById(R.id.txtTime);
+        editTreeni = (EditText) findViewById(R.id.txtTreeni);
+        valmis = (Button) findViewById(R.id.button3);
 
+        valmis.setOnClickListener(click);
         editDate.setOnClickListener(click);
         editTime.setOnClickListener(click);
 
@@ -66,6 +76,20 @@ public class TreeninLisays extends AppCompatActivity {
                 }, tunti, minuutti,true);
                 mTimePicker.show();
                 }
+            else if(v == valmis){
+                String date = editDate.getText().toString();
+                String time = editTime.getText().toString();
+                String name = editTreeni.getText().toString();
+
+                Workout workout = new Workout();
+                workout.setDate(date);
+                workout.setTime(time);
+                workout.setName(name);
+                GlobalModel.getInstance().getDatabase().workoutDAO().insert(workout);
+
+                Intent intent = new Intent(TreeninLisays.this, MainActivity.class);
+                startActivity(intent);
+            }
         }
     };
 }
