@@ -10,7 +10,12 @@ import android.widget.ListAdapter;
 
 import com.example.hyte_projekti.database.Workout;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClick(View v) {
-        Intent intent = new Intent(this, TreeninLisays.class);
+        Intent intent = new Intent(MainActivity.this, TreeninLisays.class);
         startActivity(intent);
     }
-    
+
+
+
 }
