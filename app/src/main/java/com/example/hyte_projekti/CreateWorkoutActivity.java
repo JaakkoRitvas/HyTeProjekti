@@ -29,54 +29,14 @@ public class CreateWorkoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_workout);
 
-
         editDate = (EditText) findViewById(R.id.txtDate);
         editTime = (EditText) findViewById(R.id.txtTime);
         editTreeni = (EditText) findViewById(R.id.txtTreeni);
         buttonConfirm = (Button) findViewById(R.id.button3);
 
-
-        buttonConfirm.setOnClickListener(click);
-        editDate.setOnClickListener(click);
-        editTime.setOnClickListener(click);
-
-    }
-
-    public View.OnClickListener click = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-
-            if (v == editDate) {
-                currentDate = Calendar.getInstance();
-                int vuosi = currentDate.get(Calendar.YEAR);
-                int kuukaus = currentDate.get(Calendar.MONTH);
-                int paiva = currentDate.get(Calendar.DAY_OF_MONTH);
-
-                DatePickerDialog mDatePicker = new DatePickerDialog(CreateWorkoutActivity.this, new DatePickerDialog.OnDateSetListener() {
-                    @Override
-                    public void onDateSet(DatePicker view, int valittuVuosi, int valittuKuukaus, int valittuPaiva) {
-                        editDate.setText(valittuPaiva + " - " + valittuKuukaus + " - " + valittuVuosi);
-                        currentDate.set(valittuVuosi, valittuKuukaus, valittuPaiva);
-
-                    }
-                }, vuosi, kuukaus, paiva);
-                mDatePicker.show();
-            } else if (v == editTime) {
-                currentTime = Calendar.getInstance();
-
-                int tunti = currentTime.get(Calendar.HOUR_OF_DAY);
-                int minuutti = currentTime.get(Calendar.MINUTE);
-
-                TimePickerDialog mTimePicker = new TimePickerDialog(CreateWorkoutActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int valittuTunti, int valittuMinuutti) {
-                        editTime.setText(String.format("%02d:%02d", valittuTunti, valittuMinuutti));
-                        //currentTime.set(valittuTunti, valittuMinuutti);
-
-                    }
-                }, tunti, minuutti, true);
-                mTimePicker.show();
-            } else if (v == buttonConfirm) {
+        buttonConfirm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -96,6 +56,45 @@ public class CreateWorkoutActivity extends AppCompatActivity {
                 Intent intent = new Intent(CreateWorkoutActivity.this, MainActivity.class);
                 startActivity(intent);
             }
-        }
-    };
+        });
+
+        editDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentDate = Calendar.getInstance();
+                int year = currentDate.get(Calendar.YEAR);
+                int month = currentDate.get(Calendar.MONTH);
+                int day = currentDate.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog mDatePicker = new DatePickerDialog(CreateWorkoutActivity.this, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int pickedYear, int pickedMonth, int pickedDay) {
+                        editDate.setText(pickedDay + " - " + pickedMonth + " - " + pickedYear);
+                        currentDate.set(pickedYear, pickedMonth, pickedDay);
+                    }
+                }, year, month, day);
+                mDatePicker.show();
+            }
+        });
+
+        editTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                currentTime = Calendar.getInstance();
+
+                int hour = currentTime.get(Calendar.HOUR_OF_DAY);
+                int minute = currentTime.get(Calendar.MINUTE);
+
+                TimePickerDialog mTimePicker = new TimePickerDialog(CreateWorkoutActivity.this, new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int pickedHour, int pickedMinute) {
+                        editTime.setText(String.format("%02d:%02d", pickedHour, pickedMinute));
+                        // currentTime.set(pickedHour, pickedMinute);
+                    }
+                }, hour, minute, true);
+                mTimePicker.show();
+            }
+        });
+    }
+
 }
