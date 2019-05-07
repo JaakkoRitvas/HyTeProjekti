@@ -21,8 +21,13 @@ public class ViewExerciseActivity extends AppCompatActivity {
             @Override
             public void run() {
                 Exercise exercise = GlobalModel.getInstance().getDatabase().exerciseDAO().getExerciseById(subjectId);
-                TextView tv = findViewById(R.id.textExerciseName);
-                tv.setText(exercise.getName());
+                TextView textExerciseName = findViewById(R.id.textExerciseName);
+                textExerciseName.setText(exercise.getName());
+                TextView textExerciseInstructions = findViewById(R.id.textExerciseInstructions);
+                String exerciseInstructions = exercise.getInstructions();
+                if (exerciseInstructions == null) {
+                    exerciseInstructions = "@string/null_exercise_instructions";
+                }
             }
         }).start();
     }

@@ -13,6 +13,7 @@ public class Exercise {
 
     @NonNull
     private String name;
+    private String instructions;
 
     public Exercise() {
         id = Integer.toString(hashCode());
@@ -32,6 +33,14 @@ public class Exercise {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getInstructions() {
+        return instructions;
+    }
+
+    public void setInstructions(String instructions) {
+        this.instructions = instructions;
     }
 
     @Override
