@@ -19,9 +19,6 @@ public interface WorkoutDAO {
     @Query("SELECT * FROM Workout WHERE id=:id")
     Workout getWorkoutById(String id);
 
-    @Query("SELECT * FROM Workout WHERE finished='false'")
-    List<Workout> getPlannedWorkouts();
-
-    @Query("SELECT * FROM Workout WHERE finished='true'")
-    List<Workout> getFinishedWorkouts();
+    @Query("SELECT * FROM Workout ORDER BY date DESC, time DESC")
+    List<Workout> getWorkouts();
 }

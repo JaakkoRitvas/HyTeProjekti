@@ -19,11 +19,9 @@ public class Workout {
 
     @NonNull
     private String name;
-    private boolean finished;
 
     public Workout() {
         id = Integer.toString(hashCode());
-        finished = false;
     }
 
     @NonNull
@@ -53,14 +51,6 @@ public class Workout {
         this.time = time;
     }
 
-    public boolean isFinished() {
-        return finished;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished = finished;
-    }
-
     @NonNull
     public String getName() {
         return name;
@@ -68,6 +58,11 @@ public class Workout {
 
     public void setName(@NonNull String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return date + " " + time + "\n" + name;
     }
 }
 
