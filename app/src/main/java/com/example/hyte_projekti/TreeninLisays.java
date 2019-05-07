@@ -30,6 +30,7 @@ public class TreeninLisays extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_treenin_lisays);
 
+
         editDate = (EditText) findViewById(R.id.txtDate);
         editTime = (EditText) findViewById(R.id.txtTime);
         editTreeni = (EditText) findViewById(R.id.txtTreeni);
@@ -63,6 +64,7 @@ public class TreeninLisays extends AppCompatActivity {
             }
             else if(v == editTime) {
                 currentTime = Calendar.getInstance();
+
                 int tunti = currentTime.get(Calendar.HOUR_OF_DAY);
                 int minuutti = currentTime.get(Calendar.MINUTE);
 
@@ -70,7 +72,7 @@ public class TreeninLisays extends AppCompatActivity {
                     @Override
                     public void onTimeSet(TimePicker view, int valittuTunti, int valittuMinuutti) {
                         editTime.setText(String.format("%02d:%02d", valittuTunti, valittuMinuutti));
-                        currentTime.set(valittuTunti, valittuMinuutti);
+                        //currentTime.set(valittuTunti, valittuMinuutti);
 
                     }
                 }, tunti, minuutti,true);
