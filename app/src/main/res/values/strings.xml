@@ -12,4 +12,5 @@
     <string name="input_exercise_name">Nimeä liike</string>
     <string name="submit_exercise_name">OK</string>
     <string name="default_value">Oletusarvo</string>
+    <string name="lis">Lisää</string>
 </resources>
