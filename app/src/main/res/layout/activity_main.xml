@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/floatingActionButton"
+        android:id="@+id/buttonCreateWorkout"
         android:layout_width="57dp"
         android:layout_height="56dp"
         android:layout_marginEnd="16dp"
@@ -22,7 +22,7 @@
         app:srcCompat="@android:drawable/ic_input_add" />
 
     <ListView
-        android:id="@+id/lista"
+        android:id="@+id/listWorkouts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintEnd_toEndOf="parent"
