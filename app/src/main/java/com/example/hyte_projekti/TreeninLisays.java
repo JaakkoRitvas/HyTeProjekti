@@ -3,6 +3,7 @@ package com.example.hyte_projekti;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,6 +25,11 @@ public class TreeninLisays extends AppCompatActivity {
     Calendar currentTime;
     Button valmis;
 
+    //TESTIKOODIA
+
+    private Handler mHandler = new Handler() ;
+    Thread thread;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +41,7 @@ public class TreeninLisays extends AppCompatActivity {
         editTime = (EditText) findViewById(R.id.txtTime);
         editTreeni = (EditText) findViewById(R.id.txtTreeni);
         valmis = (Button) findViewById(R.id.button3);
+
 
         valmis.setOnClickListener(click);
         editDate.setOnClickListener(click);
@@ -83,17 +90,24 @@ public class TreeninLisays extends AppCompatActivity {
                 String time = editTime.getText().toString();
                 String name = editTreeni.getText().toString();
 
-                Workout workout = new Workout();
+                final Workout workout = new Workout();
                 workout.setDate(date);
                 workout.setTime(time);
                 workout.setName(name);
-                GlobalModel.getInstance().getDatabase().workoutDAO().insert(workout);
-
+                /*thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        GlobalModel.getInstance().getDatabase().workoutDAO().insert(workout);
+                    }
+                });
+                finish();*/
                 Intent intent = new Intent(TreeninLisays.this, MainActivity.class);
                 startActivity(intent);
             }
         }
     };
 }
+
+
 
 
