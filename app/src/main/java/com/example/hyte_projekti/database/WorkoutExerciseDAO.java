@@ -16,6 +16,9 @@ public interface WorkoutExerciseDAO {
     @Delete
     void delete(WorkoutExercise workoutExercise);
 
+    @Query("SELECT * FROM WorkoutExercise WHERE exercise_id=:id LIMIT 1")
+    WorkoutExercise getWorkoutExerciseByExerciseId(String id);
+
     @Query("SELECT * FROM Exercise WHERE id IN (SELECT exercise_id FROM WorkoutExercise WHERE workout_id=:workoutId)")
     List<Exercise> getExercisesByWorkoutId(String workoutId);
 }
