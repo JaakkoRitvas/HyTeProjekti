@@ -17,6 +17,7 @@ import java.util.List;
 
 public class ViewWorkoutActivity extends AppCompatActivity {
     private String subjectId;
+    private List<Exercise> exercises;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +27,7 @@ public class ViewWorkoutActivity extends AppCompatActivity {
         final Intent intent = getIntent();
         subjectId = intent.getStringExtra(GlobalModel.ID_TAG);
         final Workout workout = GlobalModel.getInstance().getDatabase().workoutDAO().getWorkoutById(subjectId);
-        List<Exercise> exercises = GlobalModel.getInstance().getDatabase().workoutExerciseDAO().getExercisesByWorkoutId(subjectId);
+        exercises = GlobalModel.getInstance().getDatabase().workoutExerciseDAO().getExercisesByWorkoutId(subjectId);
 
         TextView textDate = findViewById(R.id.textDate);
         TextView textTime = findViewById(R.id.textTime);
@@ -43,7 +44,9 @@ public class ViewWorkoutActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intentDelete = new Intent(ViewWorkoutActivity.this, DeleteExerciseActivity.class);
-                intent.putExtra(GlobalModel.ID_TAG, subjectId);
+                Exercise exercise = exercises.get(position);
+                String exerciseId = exercise.getId();
+                intent.putExtra(GlobalModel.ID_TAG, exerciseId);
             }
         });
 
