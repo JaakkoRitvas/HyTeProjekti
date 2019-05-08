@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Leg Day</string>
-    <string name="Lisays">+</string>
+    <!--<string name="Lisays">+</string>-->
     <string name="Testi">Tämä on treeni näkymä</string>
     <string name="title_activity_exercise_list">ExerciseListActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -16,5 +16,8 @@
     <string name="button_finish_workout">Treeni tehty</string>
     <string name="button_confirm_deletion">Kyllä</string>
     <string name="button_cancel_deletion">Ei</string>
-    <string name="lis">Lisää</string>
+    <string name="txt_date">Minä päivänä haluat treenata?</string>
+    <string name="txt_time">Mihin aikaan haluat treenata?</string>
+    <string name="txt_name">Mitä haluat treenata?</string>
+    <string name="button_create_workout">Lisää</string>
 </resources>

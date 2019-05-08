@@ -4,20 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TreeninLisays">
+    tools:context=".CreateWorkoutActivity">
 
     <EditText
         android:id="@+id/txtDate"
         android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="150dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Minä päivänä haluat treenata?"
         android:clickable="false"
         android:cursorVisible="false"
+        android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:hint="@string/txt_date"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,32 +27,31 @@
         android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:ems="10"
-        android:gravity="center"
-        android:hint="Mihin aikaan haluat treenata?"
         android:clickable="false"
         android:cursorVisible="false"
+        android:ems="10"
         android:focusable="false"
         android:focusableInTouchMode="false"
+        android:gravity="center"
+        android:hint="@string/txt_time"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtDate" />
 
     <EditText
-        android:id="@+id/txtTreeni"
+        android:id="@+id/txtName"
         android:layout_width="307dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="Mitä haluat treenata?"
-        android:inputType="textPersonName"
+        android:hint="@string/txt_name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtTime" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonCreateWorkout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -60,10 +59,10 @@
         android:layout_marginTop="44dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="@string/lis"
+        android:text="@string/button_create_workout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtTreeni" />
+        app:layout_constraintTop_toBottomOf="@+id/txtName" />
 
 </android.support.constraint.ConstraintLayout>

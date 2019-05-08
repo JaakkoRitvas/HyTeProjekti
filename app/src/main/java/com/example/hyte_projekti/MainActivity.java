@@ -13,8 +13,8 @@ import com.example.hyte_projekti.database.Workout;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    ListView listWorkouts;
+    private ListView listWorkouts;
+    private List<Workout> workouts;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 GlobalModel.getInstance().activateDatabase(getApplicationContext());
-                final List<Workout> workouts = GlobalModel.getInstance().getDatabase().workoutDAO().getWorkouts();
+                workouts = GlobalModel.getInstance().getDatabase().workoutDAO().getWorkouts();
 
                 listWorkouts.setAdapter(new ArrayAdapter<>(
                         getApplicationContext(),
@@ -48,11 +48,11 @@ public class MainActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Workout workout = workouts.get(position);
-                        String subjectId = workout.getId();
+                        String workoutId = workout.getId();
 
-                        Intent intent = new Intent(MainActivity.this, ViewWorkoutActivity.class);
-                        intent.putExtra(GlobalModel.ID_TAG, subjectId);
-                        startActivity(intent);
+                        Intent intentView = new Intent(MainActivity.this, ViewWorkoutActivity.class);
+                        intentView.putExtra(GlobalModel.ID_TAG, workoutId);
+                        startActivity(intentView);
                     }
                 });
             }

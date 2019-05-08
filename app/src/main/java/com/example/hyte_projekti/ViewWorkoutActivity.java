@@ -16,18 +16,19 @@ import com.example.hyte_projekti.database.Workout;
 import java.util.List;
 
 public class ViewWorkoutActivity extends AppCompatActivity {
-    private String subjectId;
+    private String workoutId;
     private List<Exercise> exercises;
+    private Workout workout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_workout);
 
-        final Intent intent = getIntent();
-        subjectId = intent.getStringExtra(GlobalModel.ID_TAG);
-        final Workout workout = GlobalModel.getInstance().getDatabase().workoutDAO().getWorkoutById(subjectId);
-        exercises = GlobalModel.getInstance().getDatabase().exerciseDAO().getExercisesByWorkoutId(subjectId);
+        Intent intent = getIntent();
+        workoutId = intent.getStringExtra(GlobalModel.ID_TAG);
+        workout = GlobalModel.getInstance().getDatabase().workoutDAO().getWorkoutById(workoutId);
+        exercises = GlobalModel.getInstance().getDatabase().exerciseDAO().getExercisesByWorkoutId(workoutId);
 
         TextView textDate = findViewById(R.id.textDate);
         TextView textTime = findViewById(R.id.textTime);
@@ -35,32 +36,62 @@ public class ViewWorkoutActivity extends AppCompatActivity {
         textTime.setText(workout.getTime());
 
         ListView listExercises = findViewById(R.id.listExercises);
+
         listExercises.setAdapter(new ArrayAdapter<Exercise>(
                 getApplicationContext(),
                 android.R.layout.simple_list_item_1,
                 exercises
         ));
+
         listExercises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            /**
+             * take clicked exercise to another activity to be deleted
+             * attach exerciseId to intent as extra
+             * start Delete Exercise Activity
+             *
+             * @param parent
+             * @param view
+             * @param position
+             * @param id
+             */
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intentDelete = new Intent(ViewWorkoutActivity.this, DeleteExerciseActivity.class);
                 Exercise exercise = exercises.get(position);
                 String exerciseId = exercise.getId();
-                intent.putExtra(GlobalModel.ID_TAG, exerciseId);
+
+                Intent intentDelete = new Intent(ViewWorkoutActivity.this, DeleteExerciseActivity.class);
+                intentDelete.putExtra(GlobalModel.ID_TAG, exerciseId);
+                startActivity(intentDelete);
             }
         });
 
         Button buttonAddExercise = findViewById(R.id.buttonAddExercise);
         Button buttonFinishWorkout = findViewById(R.id.buttonFinishWorkout);
+
         buttonAddExercise.setOnClickListener(new View.OnClickListener() {
+            /**
+             * create new exercise
+             * attach workoutId to intent as extra
+             * start Create Exercise Activity
+             *
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 Intent intentCreate = new Intent(ViewWorkoutActivity.this, CreateExerciseActivity.class);
-                intentCreate.putExtra(GlobalModel.ID_TAG, subjectId);
+                intentCreate.putExtra(GlobalModel.ID_TAG, workoutId);
                 startActivity(intentCreate);
             }
         });
+
         buttonFinishWorkout.setOnClickListener(new View.OnClickListener() {
+            /**
+             * completion of workout
+             * remove viewed workout from database
+             * start Main Activity
+             *
+             * @param v
+             */
             @Override
             public void onClick(View v) {
                 new Thread(new Runnable() {

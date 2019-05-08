@@ -10,7 +10,7 @@ import android.widget.EditText;
 import com.example.hyte_projekti.database.Exercise;
 
 public class CreateExerciseActivity extends AppCompatActivity {
-    private String id;
+    private String workoutId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,9 +18,10 @@ public class CreateExerciseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_create_exercise);
 
         Intent intent = getIntent();
-        id = intent.getStringExtra(GlobalModel.ID_TAG);
+        workoutId = intent.getStringExtra(GlobalModel.ID_TAG);
 
-        final Button submit = findViewById(R.id.submitExerciseName);
+        Button submit = findViewById(R.id.submitExerciseName);
+
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -31,6 +32,7 @@ public class CreateExerciseActivity extends AppCompatActivity {
                         String exerciseName = input.getText().toString();
 
                         Exercise exercise = new Exercise();
+                        exercise.setWorkoutId(workoutId);
                         exercise.setName(exerciseName);
                         GlobalModel.getInstance().getDatabase().exerciseDAO().insert(exercise);
 
