@@ -17,7 +17,7 @@ public class CreateExerciseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_exercise);
 
-        Intent intent = getIntent();
+        final Intent intent = getIntent();
         workoutId = intent.getStringExtra(GlobalModel.ID_TAG);
 
         Button submit = findViewById(R.id.submitExerciseName);
@@ -41,5 +41,21 @@ public class CreateExerciseActivity extends AppCompatActivity {
                 }).start();
             }
         });
+
+        /*Button buttonQuitCreating = findViewById(R.id.buttonQuitCreating);
+
+        buttonQuitCreating.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentMain = new Intent(CreateExerciseActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });*/
+    }
+
+    public void onClick(View v) {
+        Intent intentMain = new Intent(CreateExerciseActivity.this, ViewWorkoutActivity.class);
+        intentMain.putExtra(GlobalModel.ID_TAG, workoutId);
+        startActivity(intentMain);
     }
 }

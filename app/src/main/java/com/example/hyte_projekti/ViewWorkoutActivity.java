@@ -27,43 +27,49 @@ public class ViewWorkoutActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         workoutId = intent.getStringExtra(GlobalModel.ID_TAG);
-        workout = GlobalModel.getInstance().getDatabase().workoutDAO().getWorkoutById(workoutId);
-        exercises = GlobalModel.getInstance().getDatabase().exerciseDAO().getExercisesByWorkoutId(workoutId);
-
-        TextView textDate = findViewById(R.id.textDate);
-        TextView textTime = findViewById(R.id.textTime);
-        textDate.setText(workout.getDate());
-        textTime.setText(workout.getTime());
-
-        ListView listExercises = findViewById(R.id.listExercises);
-
-        listExercises.setAdapter(new ArrayAdapter<Exercise>(
-                getApplicationContext(),
-                android.R.layout.simple_list_item_1,
-                exercises
-        ));
-
-        listExercises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            /**
-             * take clicked exercise to another activity to be deleted
-             * attach exerciseId to intent as extra
-             * start Delete Exercise Activity
-             *
-             * @param parent
-             * @param view
-             * @param position
-             * @param id
-             */
+        new Thread(new Runnable() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Exercise exercise = exercises.get(position);
-                String exerciseId = exercise.getId();
+            public void run() {
+                workout = GlobalModel.getInstance().getDatabase().workoutDAO().getWorkoutById(workoutId);
+                exercises = GlobalModel.getInstance().getDatabase().exerciseDAO().getExercisesByWorkoutId(workoutId);
 
-                Intent intentDelete = new Intent(ViewWorkoutActivity.this, DeleteExerciseActivity.class);
-                intentDelete.putExtra(GlobalModel.ID_TAG, exerciseId);
-                startActivity(intentDelete);
+                TextView textDate = findViewById(R.id.textDate);
+                TextView textTime = findViewById(R.id.textTime);
+                textDate.setText(workout.getDate());
+                textTime.setText(workout.getTime());
+
+                ListView listExercises = findViewById(R.id.listExercises);
+
+                listExercises.setAdapter(new ArrayAdapter<Exercise>(
+                        getApplicationContext(),
+                        android.R.layout.simple_list_item_1,
+                        exercises
+                ));
+
+                listExercises.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    /**
+                     * take clicked exercise to another activity to be deleted
+                     * attach exerciseId to intent as extra
+                     * start Delete Exercise Activity
+                     *
+                     * @param parent
+                     * @param view
+                     * @param position
+                     * @param id
+                     */
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Exercise exercise = exercises.get(position);
+                        String exerciseId = exercise.getId();
+
+                        Intent intentDelete = new Intent(ViewWorkoutActivity.this, DeleteExerciseActivity.class);
+                        intentDelete.putExtra(GlobalModel.ID_TAG, exerciseId);
+                        startActivity(intentDelete);
+                    }
+                });
             }
-        });
+        }).start();
+
 
         Button buttonAddExercise = findViewById(R.id.buttonAddExercise);
         Button buttonFinishWorkout = findViewById(R.id.buttonFinishWorkout);

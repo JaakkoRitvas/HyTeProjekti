@@ -37,13 +37,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CreateExerciseActivity"
-            android:parentActivityName=".ViewWorkoutActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ViewWorkoutActivity" />
-        </activity>
+        <activity android:name=".CreateExerciseActivity" />
     </application>
 
 </manifest>
